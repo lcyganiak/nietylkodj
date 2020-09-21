@@ -1,0 +1,25 @@
+# Link do htaccessa:
+
+# https://www.sempire.pl/generator-htaccess.html?id=a912150d9c832c7f72e1119152c55349
+
+#    ___ ___ __  __ ___ ___ ___ ___    #
+#   / __| __|  \/  | _ \_ _| _ \ __|   #
+#   \__ \ _|| |\/| |  _/| ||   / _|    #
+#   |___/___|_|  |_|_| |___|_|_\___|   #
+#                                      #
+#         Htaccess Generator           #
+ 
+
+RewriteEngine on
+
+# Przekierowanie domeny
+
+RewriteCond %{SERVER_PORT} !^443$ [OR]
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+RewriteCond %{HTTP_HOST} !^www\.nietylkodj\.pl$ [NC] 
+RewriteRule ^(.*)$ https://www.nietylkodj\.pl/$1 [R=301,L
+ErrorDocument 403 /zletrafiles
+ErrorDocument 500 /zletrafiles
