@@ -35,13 +35,14 @@ const router = new Router({
           name: 'Galeria',
           component: () => import('@/views/gallery/Index.vue'),
           meta: { src: 'https://nietylkodj.pl/topPage/3galeria_optimized.jpg' },
-          children: [
-           {
-             path: 'indywidualna',
-            component: () => import('../components/GalleryIndividual.vue'),
-            meta: { src: 'https://nietylkodj.pl/topPage/3galeria_optimized.jpg' },
-           },
-          ],
+        },
+        {
+          path: 'galeria/indywidualna',
+          component: () => import('../components/GalleryIndividual.vue'),
+        },
+        {
+          path: 'galeria/firmowa',
+          component: () => import('../components/GalleryCompany.vue'),
         },
         {
           path: 'technika-estradowa',

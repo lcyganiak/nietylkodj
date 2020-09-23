@@ -6,7 +6,6 @@
       space="56"
     >
       <v-container
-        v-if="bothGallery"
       >
         <v-row>
           <v-col
@@ -61,26 +60,7 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-btn
-        v-if="galleryIndividual || galleryCompany"
-        class="mt-3"
-        rounded
-        color="primary"
-        style="color: rgba(0, 0, 0, 0.87); font-weight: 700"
-        dark
-        @click="backGallery()"
-        v-text="'Powrót'"
-      />
-      <v-container fluid>
-        <gallery-individual
-          v-if="galleryIndividual"
-        />
-      </v-container>
-      <v-container fluid>
-        <gallery-company
-          v-if="galleryCompany"
-        />
-      </v-container>
+
     </base-section>
   </v-theme-provider>
 </template>
@@ -88,35 +68,15 @@
 <script>
   export default {
     name: 'SectionNews',
-    components: {
-      GalleryCompany: () => import('@/components/GalleryCompany'),
-      GalleryIndividual: () => import('@/components/GalleryIndividual'),
-    },
-    data () {
-      return {
-        galleryIndividual: false,
-        galleryCompany: false,
-        bothGallery: true,
-      }
-    },
     provide: {
       heading: { align: 'center' },
     },
     methods: {
       showGalleryCompany () {
-        this.galleryIndividual = false
-        this.galleryCompany = true
-        this.bothGallery = false
+        this.$router.push('galeria/firmowa')
       },
       showGalleryIndividual () {
-        this.galleryCompany = false
-        this.galleryIndividual = true
-        this.bothGallery = false
-      },
-      backGallery () {
-        this.galleryIndividual = false
-        this.galleryCompany = false
-        this.bothGallery = true
+        this.$router.push('galeria/indywidualna')
       },
     },
   }
