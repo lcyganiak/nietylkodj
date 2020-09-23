@@ -1,7 +1,6 @@
 <template>
   <section
     :id="id"
-    :style="id == '404' ? 'height: 80vh': ''"
   >
     <v-row no-gutters>
       <v-col cols="12">
@@ -9,6 +8,7 @@
           :is="`section-${section}`"
           v-for="section in sections"
           :key="section"
+          :style="section == '404' ? 'height: 90vh': ''"
         />
       </v-col>
     </v-row>

@@ -64,7 +64,6 @@
       drawer: null,
       items: [
         'Home',
-        'Galeria',
         'Zaufali nam',
         'Referencje',
         'Kontakt',

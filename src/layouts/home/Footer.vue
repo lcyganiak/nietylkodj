@@ -106,7 +106,7 @@
           },
           {
             text: 'Referencje',
-            path: '/referencje/',
+            path: '/referencje',
           },
           // {
           //   text: 'Opinie',
