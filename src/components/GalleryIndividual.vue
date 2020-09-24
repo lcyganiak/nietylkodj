@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="grid">
-      <div class="item1">
+      <!-- <div class="item1">
         <v-img
           src="https://picsum.photos/510/300?random"
           aspect-ratio="1.7"
@@ -69,7 +69,7 @@
       <div class="item41"></div>
       <div class="item42"></div>
       <div class="item43"></div>
-      <div class="item44"></div>
+      <div class="item44"></div> -->
     </div>
     <v-btn
       class="mt-3"
@@ -84,8 +84,29 @@
 </template>
 
 <script>
+  import coursesService from '@/service/nietylkodj.service.js'
+  import * as R from 'ramda'
   export default {
     name: 'GalleryIndividual',
+    data () {
+      return {
+        allFoto: [],
+      }
+    },
+    created () {
+      this.setup()
+    },
+    methods: {
+      async setup () {
+        this.allFoto = []
+        try {
+          this.allFoto = R.propOr(null, 'data', await coursesService.galeriaIndywidualna())
+          console.log(this.allFoto)
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    },
   }
 </script>
 
