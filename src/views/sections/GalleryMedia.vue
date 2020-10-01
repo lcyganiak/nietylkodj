@@ -5,8 +5,7 @@
       class="text-center"
       space="56"
     >
-      <v-container
-      >
+      <v-container>
         <v-row>
           <v-col
             cols="12"

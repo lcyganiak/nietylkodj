@@ -53,9 +53,18 @@
         name="message_html"
         required
       />
-      <p class="regulamin">
-        *Dane wpisane w formularzu kontaktowym będą wykorzystywane do jednorazowego kontaktu i nie będą gromadzone ani przetwarzane.
-      </p>
+      <div
+      class="grid"
+      >
+        <v-checkbox
+          v-model="checkbox"
+          class="xd"
+          style="width: 30%"
+        />
+        <span class="regulamin">
+          Wyrażam zgodę na przetwarzanie moich danych zamieszczonych w niniejszym formularzu, zgodnie z ustawą o ochronie danych osobowych w celu udzielenia odpowiedzi na wpisane zapytanie. Oświadczam, że zapoznałem się z Klauzulą informacyjną i Polityką prywatności.
+        </span>
+      </div>
       <base-btn
         :color="!theme.isDark ? 'primary' : 'white'"
         outlined
@@ -131,6 +140,7 @@
           message: '',
           robo: '',
         },
+        checkbox: false,
         snackbar: false,
         snackbarError: false,
         timeout: 2000,
@@ -140,7 +150,7 @@
     },
     methods: {
       sendEmail (e) {
-        if (this.formEmial.robo === '') {
+        if (this.formEmial.robo === '' && this.checkbox) {
           emailjs.sendForm('piotrlamus_gmail_com', 'template_7zbclMgH', e.target, 'user_DLgdcpuwd8noaDxb8mvaG')
             .then((result) => {
               this.snackbar = true
@@ -165,7 +175,8 @@
 
   .regulamin {
     font-size: 11px;
-    color: rgb(248, 204, 61)
+    color: rgb(248, 204, 61);
+    margin-top: 13px;
   }
 .v-text-field--outlined fieldset {
 
@@ -177,6 +188,15 @@
 }
 .theme--light.v-input label {
   color:rgb(248, 204, 61);
-
+}
+.mdi-checkbox-blank-outline::after {
+  color:rgb(248, 204, 61);
+}
+.xd {
+  width: 30%;
+}
+.grid {
+  display: grid;
+ grid-template-columns: 10% 90%;
 }
 </style>
