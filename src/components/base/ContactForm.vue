@@ -186,7 +186,7 @@
         checkbox: false,
         snackbar: false,
         snackbarError: false,
-        timeout: 2000,
+        timeout: 3000,
         textSnackbar: 'Wiadomości została wysłana',
         textSnackbarError: 'Niestety nie udał osię wysłać wiadomości',
         dialog: false,
