@@ -54,7 +54,7 @@
         required
       />
       <div
-      class="grid"
+        class="grid"
       >
         <v-checkbox
           v-model="checkbox"
@@ -62,7 +62,19 @@
           style="width: 30%"
         />
         <span class="regulamin">
-          Wyrażam zgodę na przetwarzanie moich danych zamieszczonych w niniejszym formularzu, zgodnie z ustawą o ochronie danych osobowych w celu udzielenia odpowiedzi na wpisane zapytanie. Oświadczam, że zapoznałem się z Klauzulą informacyjną i Polityką prywatności.
+          Wyrażam zgodę na przetwarzanie moich danych zamieszczonych w niniejszym formularzu, zgodnie z ustawą o ochronie danych osobowych w celu udzielenia odpowiedzi na wpisane zapytanie. Oświadczam, że zapoznałem się z
+          <span
+            class="modal"
+            @click="openModal(1)"
+          >
+            Klauzulą informacyjną
+          </span> i
+          <span
+            class="modal"
+            @click="openModal(2)"
+          >
+            Polityką prywatności
+          </span>.
         </span>
       </div>
       <base-btn
@@ -114,6 +126,37 @@
         </v-btn>
       </template>
     </v-snackbar>
+    <v-row justify="center">
+      <v-dialog
+        v-model="dialog"
+        max-width="600px"
+        max-height="1000px"
+      >
+        <v-card
+          max-width="600px"
+          class="mx-auto mb-8 primary"
+          outlined
+        >
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title
+                style="font-size: 15px; font-weight: 700; color: menuColor"
+              />
+            </v-list-item-content>
+          </v-list-item>
+          <v-card-actions>
+            <v-btn
+              text
+              style="font-size: 15px; font-weight: 700; color: menuColor"
+              @click="dialog = false"
+            >
+              Zamknij
+            </v-btn>
+            <v-spacer />
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </div>
 </template>
 
@@ -146,6 +189,7 @@
         timeout: 2000,
         textSnackbar: 'Wiadomości została wysłana',
         textSnackbarError: 'Niestety nie udał osię wysłać wiadomości',
+        dialog: false,
       }
     },
     methods: {
@@ -168,6 +212,10 @@
             })
         }
       },
+      openModal (number) {
+        this.dialog = true
+        console.log(number)
+      },
     },
   }
 </script>
@@ -189,7 +237,7 @@
 .theme--light.v-input label {
   color:rgb(248, 204, 61);
 }
-.mdi-checkbox-blank-outline::after {
+.mdi-checkbox-blank-outline::before {
   color:rgb(248, 204, 61);
 }
 .xd {
@@ -198,5 +246,9 @@
 .grid {
   display: grid;
  grid-template-columns: 10% 90%;
+}
+.modal {
+  text-decoration: underline;
+  cursor: pointer;
 }
 </style>
