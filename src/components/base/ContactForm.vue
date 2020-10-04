@@ -65,13 +65,13 @@
           Wyrażam zgodę na przetwarzanie moich danych zamieszczonych w niniejszym formularzu, zgodnie z ustawą o ochronie danych osobowych w celu udzielenia odpowiedzi na wpisane zapytanie. Oświadczam, że zapoznałem się z
           <span
             class="modal"
-            @click="openModal(1)"
+            @click="openModal(0)"
           >
             Klauzulą informacyjną
           </span> i
           <span
             class="modal"
-            @click="openModal(2)"
+            @click="openModal(1)"
           >
             Polityką prywatności
           </span>.
@@ -143,6 +143,7 @@
                 style="font-size: 15px; font-weight: 700; color: menuColor"
               />
             </v-list-item-content>
+            <div v-html="toModal" />
           </v-list-item>
           <v-card-actions>
             <v-btn
@@ -162,6 +163,8 @@
 
 <script>
   import emailjs from 'emailjs-com'
+  import coursesService from '@/service/nietylkodj.service.js'
+  import * as R from 'ramda'
   export default {
     name: 'BaseContactForm',
 
@@ -190,9 +193,23 @@
         textSnackbar: 'Wiadomości została wysłana',
         textSnackbarError: 'Niestety nie udał osię wysłać wiadomości',
         dialog: false,
+        pp: [],
+        toModal: '',
       }
     },
+    created () {
+      this.setUp()
+    },
+
     methods: {
+      async setUp () {
+        try {
+          this.pp = R.propOr(null, 'data', await coursesService.polityki())
+          console.log(this.pp)
+        } catch (err) {
+          console.log(err)
+        }
+      },
       sendEmail (e) {
         if (this.formEmial.robo === '' && this.checkbox) {
           emailjs.sendForm('piotrlamus_gmail_com', 'template_7zbclMgH', e.target, 'user_DLgdcpuwd8noaDxb8mvaG')
@@ -214,7 +231,7 @@
       },
       openModal (number) {
         this.dialog = true
-        console.log(number)
+        this.toModal = this.pp[number].description
       },
     },
   }
@@ -225,6 +242,7 @@
     font-size: 11px;
     color: rgb(248, 204, 61);
     margin-top: 13px;
+    margin-bottom: 13px;
   }
 .v-text-field--outlined fieldset {
 
@@ -245,10 +263,20 @@
 }
 .grid {
   display: grid;
- grid-template-columns: 10% 90%;
+  grid-template-columns: 10% 90%;
 }
 .modal {
   text-decoration: underline;
   cursor: pointer;
+}
+.pol {
+  color: cadetblue;
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+.grid {
+  display: grid;
+  grid-template-columns: auto;
+}
 }
 </style>

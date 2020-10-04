@@ -16,7 +16,7 @@
           >
             <base-section-heading
               color="transparent"
-              title="Galeria zdjęci firmowych"
+              title="Galeria zdjęci indywidualnych"
             >
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi aspernatur recusandae aut repudiandae illo error obcaecati dolores voluptate, tempore.
             </base-section-heading>
@@ -30,11 +30,12 @@
                   :key="index"
                   :class="`item+${index + 1}`"
                 >
-                  <img
-                    :src="foto.imgPath"
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ducimus voluptatem deleniti! Officia quos, ipsum nesciunt fuga unde quis culpa delectus. Ducimus eaque excepturi laborum inventore omnis, iure enim nesciunt!</p>
+                  <v-img
+                    src="https://nietylkodj.pl/galeriaIndywidualna/20161214_184228_hdr_optimized.jpg"
                     alt=""
                     style="  width: 100%; height: 150px;"
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -79,7 +80,7 @@
     },
     methods: {
       async setup () {
-        this.allFoto = []
+        // this.allFoto = []
         try {
           this.allFoto = R.propOr(null, 'data', await coursesService.galeriaIndywidualna())
           this.isLoadingSpiner = false
@@ -101,7 +102,7 @@
   grid-column-gap: 4px;
   grid-row-gap: 4px;
 }
-.item1 {
+/* .item1 {
   grid-column: 1 / span 2;
   grid-row: 1 / span 3;
   background-color: #1c1c1c;
@@ -114,5 +115,5 @@
   background-color: #1c1c1c;
   grid-column: 3;
   grid-row: 3 / span 4;
-}
+} */
 </style>

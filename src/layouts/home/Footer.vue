@@ -92,10 +92,10 @@
           //   text: 'Oferta',
           //   path: '/oferta',
           // },
-          // {
-          //   text: 'Galeria',
-          //   path: '/galeria',
-          // },
+          {
+            text: 'Galeria',
+            path: '/galeria',
+          },
           // {
           //   text: 'Technika Estradowa',
           //   path: '/stagetechnique',

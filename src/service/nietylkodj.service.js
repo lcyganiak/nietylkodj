@@ -14,6 +14,9 @@ const logoAll = () => {
 const galeriaIndywidualna = () => {
   return axios.get(`${url}galeriaIndywidualna/read.php`)
 }
+const polityki = () => {
+  return axios.get(`${url}polityki/read.php`)
+}
 // http://api.nietylkodj.pl/api/logaAll/read.php
 // http://api.nietylkodj.pl/api/loga20/read.php
 export default {
@@ -21,4 +24,5 @@ export default {
   logo20,
   logoAll,
   galeriaIndywidualna,
+  polityki,
 }
